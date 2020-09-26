@@ -1,7 +1,14 @@
+require('dotenv').config();
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const speech = require('@google-cloud/speech');
-const speechClient = new speech.SpeechClient();
+const speechClient = new speech.SpeechClient({
+  credentials: {
+    private_key: process.env.GOOGLE_APPLICATION_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_APPLICATION_CLIENT_EMAIL,
+  }
+});
 const { Readable } = require('stream');
 
 client.on('ready', () => {
@@ -70,7 +77,7 @@ client.on('message', async msg => {
   }
 });
 
-client.login(process.env.TABOO_TOKEN);
+client.login(process.env.DISCORD_BOT_TOKEN);
 
 const { Transform } = require('stream')
 
