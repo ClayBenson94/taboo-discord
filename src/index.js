@@ -79,6 +79,10 @@ client.on('message', async msg => {
 
 client.login(process.env.DISCORD_BOT_TOKEN);
 
+
+// The below code is shamelessly copied from https://refruity.xyz/writing-discord-bot/
+// I plan on moving this out. Please don't look at the git history and see this, because hopefully, in time,
+// this will be located in a module somewhere and tucked away from all the pretty code :)
 const { Transform } = require('stream')
 
 function convertBufferTo1Channel(buffer) {
